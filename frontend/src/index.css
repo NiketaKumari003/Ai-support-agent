@@ -1,0 +1,81 @@
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* default to light; JS will switch based on system / toggle */
+  color-scheme: light;
+
+  --asa-bg: #0b1020;
+  --asa-bg-elevated: #111629;
+  --asa-surface: rgba(15, 23, 42, 0.98);
+  --asa-surface-strong: rgba(15, 23, 42, 1);
+  --asa-fg: #e5e7eb;
+  --asa-fg-muted: #9ca3af;
+  --asa-border-subtle: rgba(51, 65, 85, 0.7);
+  --asa-border-strong: rgba(148, 163, 184, 0.7);
+  --asa-input-bg: rgba(15, 23, 42, 0.9);
+  --asa-accent: #4f46e5;
+  --asa-accent-soft: rgba(129, 140, 248, 0.4);
+  --asa-header-bg: linear-gradient(to right, rgba(15, 23, 42, 0.9), rgba(17, 24, 39, 0.85));
+  --asa-avatar-bg: rgba(51, 65, 85, 0.9);
+  --asa-avatar-fg: #e5e7eb;
+  --asa-bubble-user-bg: #4f46e5;
+  --asa-bubble-user-fg: #ffffff;
+  --asa-bubble-ai-bg: rgba(15, 23, 42, 0.9);
+  --asa-bubble-ai-fg: #e5e7eb;
+  --asa-bubble-system-bg: #0369a1;
+  --asa-bubble-system-fg: #e0f2fe;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --asa-bg: #f3f4f6;
+  --asa-bg-elevated: #ffffff;
+  --asa-surface: #ffffff;
+  --asa-surface-strong: #f9fafb;
+  --asa-fg: #111827;
+  --asa-fg-muted: #6b7280;
+  --asa-border-subtle: #e5e7eb;
+  --asa-border-strong: #d1d5db;
+  --asa-input-bg: #f9fafb;
+  --asa-accent: #4f46e5;
+  --asa-accent-soft: rgba(129, 140, 248, 0.18);
+  --asa-header-bg: rgba(249, 250, 251, 0.96);
+  --asa-avatar-bg: #eef2ff;
+  --asa-avatar-fg: #4f46e5;
+  --asa-bubble-user-bg: #4f46e5;
+  --asa-bubble-user-fg: #ffffff;
+  --asa-bubble-ai-bg: #f3f4f6;
+  --asa-bubble-ai-fg: #111827;
+  --asa-bubble-system-bg: #dbeafe;
+  --asa-bubble-system-fg: #1d4ed8;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--asa-bg);
+  color: var(--asa-fg);
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
