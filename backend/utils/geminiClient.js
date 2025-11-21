@@ -18,7 +18,7 @@ async function generateGeminiResponse(systemPrompt, userPrompt, maxTokens = 800,
     throw new Error('GEMINI_API_KEY is not set');
   }
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(
+  const url = `https://generativelanguage.googleapis.com/v1/models/${encodeURIComponent(
     GEMINI_MODEL,
   )}:generateContent?key=${encodeURIComponent(GEMINI_API_KEY)}`;
 
