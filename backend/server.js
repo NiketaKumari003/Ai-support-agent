@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 4000;
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? ['https://ai-support-agent.vercel.app', 'https://ai-support-agent-backend.onrender.com']
-    : true,
+    : ['http://localhost:3000', 'http://localhost:5173', 'http://localhost:4000'],
   credentials: true
 }));
 app.use(morgan('dev'));

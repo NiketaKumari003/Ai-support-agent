@@ -12,8 +12,8 @@ const PINECONE_ENVIRONMENT = process.env.PINECONE_ENVIRONMENT; // kept for legac
 const PINECONE_INDEX_NAME = process.env.PINECONE_INDEX_NAME;
 
 async function initPinecone() {
-  if (!PINECONE_API_KEY || !PINECONE_ENVIRONMENT || !PINECONE_INDEX_NAME) {
-    console.warn('Pinecone not configured. Set PINECONE_API_KEY, PINECONE_ENVIRONMENT, and PINECONE_INDEX_NAME to enable vector search.');
+  if (!PINECONE_API_KEY || !PINECONE_INDEX_NAME) {
+    console.warn('Pinecone not configured. Set PINECONE_API_KEY and PINECONE_INDEX_NAME to enable vector search.');
     return false;
   }
 
@@ -22,10 +22,7 @@ async function initPinecone() {
   }
 
   try {
-    pineconeClient = new Pinecone({ 
-      apiKey: PINECONE_API_KEY,
-      environment: PINECONE_ENVIRONMENT
-    });
+    pineconeClient = new Pinecone({ apiKey: PINECONE_API_KEY });
     pineconeIndex = pineconeClient.index(PINECONE_INDEX_NAME);
     console.log('Pinecone client initialized');
     return true;

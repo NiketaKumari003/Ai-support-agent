@@ -16,8 +16,6 @@ services:
         sync: false
       - key: PINECONE_API_KEY
         sync: false
-      - key: PINECONE_ENVIRONMENT
-        sync: false
       - key: PINECONE_INDEX_NAME
         sync: false
       - key: JWT_SECRET
