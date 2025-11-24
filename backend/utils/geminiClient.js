@@ -7,7 +7,7 @@ if (!GEMINI_API_KEY) {
   console.warn('GEMINI_API_KEY is not set. Chat responses will fail until it is configured.');
 }
 
-const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-1.5-flash';
+const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 
 /**
  * Call Google Generative Language (Gemini) API with a system + user prompt
@@ -49,8 +49,26 @@ async function generateGeminiResponse(systemPrompt, userPrompt, maxTokens = 800,
 
   if (!res.ok) {
     const errText = await res.text();
-    const error = new Error(`Gemini API error ${res.status}: ${errText}`);
+
+    let message = `Gemini API error ${res.status}`;
+    let code = undefined;
+
+    try {
+      const parsed = JSON.parse(errText);
+      if (parsed && parsed.error) {
+        message = parsed.error.message || message;
+        code = parsed.error.code;
+      }
+    } catch (_) {
+      // Non-JSON error body; fall back to raw text.
+      if (errText) {
+        message = `${message}: ${errText}`;
+      }
+    }
+
+    const error = new Error(message);
     error.status = res.status;
+    if (code) error.code = code;
     error.body = errText;
     throw error;
   }

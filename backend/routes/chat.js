@@ -88,6 +88,7 @@ router.post('/', async (req, res) => {
 
     const code = err?.code || err?.error?.code;
     const status = err?.status;
+    const message = err?.message || 'Chat failed';
 
     // OpenAI-style quota error (kept for backwards compatibility)
     if (code === 'insufficient_quota' || status === 429) {
@@ -108,6 +109,7 @@ router.post('/', async (req, res) => {
         reply: {
           type: 'error',
           message:
+            message ||
             'The AI configuration seems invalid (API key or model). Please verify your Gemini API settings on the server.',
           sources: [],
         },
@@ -115,7 +117,13 @@ router.post('/', async (req, res) => {
       });
     }
 
-    res.status(500).json({ error: 'Chat failed' });
+    res.status(500).json({
+      error: message,
+      details: {
+        code: code || null,
+        status: status || 500,
+      },
+    });
   }
 });
 
