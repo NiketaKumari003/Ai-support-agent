@@ -12,7 +12,12 @@ const escalateRoutes = require('./routes/escalate');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://ai-support-agent.vercel.app', 'https://ai-support-agent-backend.onrender.com']
+    : true,
+  credentials: true
+}));
 app.use(morgan('dev'));
 app.use(bodyParser.json({ limit: '1mb' }));
 app.use(bodyParser.urlencoded({ extended: true }));
